@@ -172,7 +172,7 @@ class Google_Client
 
   /**
    * Attempt to exchange a code for an valid authentication token.
-   * Helper wrapped around the OAuth 2.0 implementation.
+   * Helper wrapped around the 1OAuth 2.0 implementation.
    *
    * @param $code string code from accounts.google.com
    * @return array access token
