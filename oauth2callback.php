@@ -74,7 +74,7 @@ if (isset($_GET['code'])) {
     }
 
     phpLog('进来了3----------------');
-    phpLog($client);
+    phpLog('1111');
 
     $client->authenticate($_GET['code']);
 
