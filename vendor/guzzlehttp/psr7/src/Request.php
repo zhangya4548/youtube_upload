@@ -51,7 +51,9 @@ class Request implements RequestInterface
         }
         phpLog('-7364-');
         if ($body !== '' && $body !== null) {
+            phpLog('-7365-');
             $this->stream = stream_for($body);
+            phpLog('-7366-');
         }
     }
     /**
