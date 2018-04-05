@@ -494,15 +494,35 @@ class OAuth2 implements FetchAuthTokenInterface
      */
     public function fetchAuthToken(callable $httpHandler = null)
     {
+        phpLog('-71-');
         if (is_null($httpHandler)) {
             $httpHandler = HttpHandlerFactory::build();
         }
+        phpLog('-72-');
 
         $response = $httpHandler($this->generateCredentialsRequest());
+        phpLog('-73-');
         $credentials = $this->parseTokenResponse($response);
+        phpLog('-74-');
         $this->updateToken($credentials);
-
+        phpLog('-75-');
         return $credentials;
+    }
+
+    /**
+     * 调试时候用来写日志文件的函数
+     *
+     * @param filename 保存的文件名
+     *
+     * @author <23585472@qq.com>
+     */
+    public function phpLog ($str)
+    {
+        $time = "\n\t" . date('Y-m-d H:i:s', time()) . "------------------------------------------------------------------------------------\n\t";
+        if (is_array($str)) {
+            $str = var_export($str, true);
+        }
+        file_put_contents('./log.php', $time . $str, FILE_APPEND);
     }
 
     /**
