@@ -434,12 +434,16 @@ class OAuth2 implements FetchAuthTokenInterface
      */
     public function generateCredentialsRequest()
     {
+        phpLog('-731-');
         $uri = $this->getTokenCredentialUri();
+        phpLog('-732-');
         if (is_null($uri)) {
             throw new \DomainException('No token credential URI was set.');
         }
+        phpLog('-733-');
 
         $grantType = $this->getGrantType();
+        phpLog('-734-');
         $params = array('grant_type' => $grantType);
         switch ($grantType) {
             case 'authorization_code':
@@ -471,12 +475,13 @@ class OAuth2 implements FetchAuthTokenInterface
                 }
                 $params = array_merge($params, $this->getExtensionParams());
         }
+        phpLog('-735-');
 
         $headers = [
             'Cache-Control' => 'no-store',
             'Content-Type' => 'application/x-www-form-urlencoded',
         ];
-
+        phpLog('-736-');
         return new Request(
             'POST',
             $uri,
