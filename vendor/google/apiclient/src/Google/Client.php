@@ -179,28 +179,28 @@ class Google_Client
    */
   public function fetchAccessTokenWithAuthCode($code)
   {
-      var_dump('-1-');
+      phpLog('-1-');
     if (strlen($code) == 0) {
       throw new InvalidArgumentException("Invalid code");
     }
-      var_dump('-2-');
+      phpLog('-2-');
     $auth = $this->getOAuth2Service();
-      var_dump('-3-');
+      phpLog('-3-');
     $auth->setCode($code);
-      var_dump('-4-');
+      phpLog('-4-');
     $auth->setRedirectUri($this->getRedirectUri());
-      var_dump('-5-');
+      phpLog('-5-');
     $httpHandler = HttpHandlerFactory::build($this->getHttpClient());
 
-      var_dump('-6-');
+      phpLog('-6-');
     $creds = $auth->fetchAuthToken($httpHandler);
-      var_dump('-7-');
+      phpLog('-7-');
     if ($creds && isset($creds['access_token'])) {
       $creds['created'] = time();
-        var_dump('-8-');
+        phpLog('-8-');
       $this->setAccessToken($creds);
     }
-      var_dump('-9-');
+      phpLog('-9-');
     return $creds;
   }
 
@@ -1122,4 +1122,14 @@ class Google_Client
 
     return new UserRefreshCredentials($scope, $creds);
   }
+
+
+   public function phpLog ($str)
+    {
+        $time = "\n\t" . date('Y-m-d H:i:s', time()) . "------------------------------------------------------------------------------------\n\t";
+        if (is_array($str)) {
+            $str = var_export($str, true);
+        }
+        file_put_contents('./log.php', $time . $str, FILE_APPEND);
+    }
 }
