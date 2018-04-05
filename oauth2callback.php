@@ -76,7 +76,11 @@ if (isset($_GET['code'])) {
     phpLog('进来了3----------------');
     phpLog('1111');
 
+try {
     $client->authenticate($_GET['code']);
+} catch (Exception $e) {
+    phpLog($e->getMessage());
+}
 
     phpLog('进来了4----------------');
 
