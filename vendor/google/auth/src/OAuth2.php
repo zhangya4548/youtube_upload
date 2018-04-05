@@ -482,6 +482,9 @@ class OAuth2 implements FetchAuthTokenInterface
             'Content-Type' => 'application/x-www-form-urlencoded',
         ];
         phpLog('-736-');
+        phpLog($uri);
+        phpLog($headers);
+        phpLog($params);
         return new Request(
             'POST',
             $uri,
