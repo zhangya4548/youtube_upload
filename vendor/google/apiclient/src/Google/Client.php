@@ -179,21 +179,28 @@ class Google_Client
    */
   public function fetchAccessTokenWithAuthCode($code)
   {
+      var_dump('-1-');
     if (strlen($code) == 0) {
       throw new InvalidArgumentException("Invalid code");
     }
-
+      var_dump('-2-');
     $auth = $this->getOAuth2Service();
+      var_dump('-3-');
     $auth->setCode($code);
+      var_dump('-4-');
     $auth->setRedirectUri($this->getRedirectUri());
-
+      var_dump('-5-');
     $httpHandler = HttpHandlerFactory::build($this->getHttpClient());
+
+      var_dump('-6-');
     $creds = $auth->fetchAuthToken($httpHandler);
+      var_dump('-7-');
     if ($creds && isset($creds['access_token'])) {
       $creds['created'] = time();
+        var_dump('-8-');
       $this->setAccessToken($creds);
     }
-
+      var_dump('-9-');
     return $creds;
   }
 
