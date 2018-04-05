@@ -508,7 +508,7 @@ class OAuth2 implements FetchAuthTokenInterface
         }
         phpLog('-72-');
         echo '<pre>';
-        var_dump($httpHandler);
+        var_dump($this->generateCredentialsRequest());
         die;
 
         $response = $httpHandler($this->generateCredentialsRequest());
