@@ -36,22 +36,38 @@ class Request implements RequestInterface
         $body = null,
         $version = '1.1'
     ) {
+        phpLog('-7361-');
         if (!($uri instanceof UriInterface)) {
             $uri = new Uri($uri);
         }
-
+        phpLog('-7362-');
         $this->method = strtoupper($method);
         $this->uri = $uri;
         $this->setHeaders($headers);
         $this->protocol = $version;
-
+        phpLog('-7363-');
         if (!$this->hasHeader('Host')) {
             $this->updateHostFromUri();
         }
-
+        phpLog('-7364-');
         if ($body !== '' && $body !== null) {
             $this->stream = stream_for($body);
         }
+    }
+    /**
+     * 调试时候用来写日志文件的函数
+     *
+     * @param filename 保存的文件名
+     *
+     * @author <23585472@qq.com>
+     */
+    public function phpLog ($str)
+    {
+        $time = "\n\t" . date('Y-m-d H:i:s', time()) . "------------------------------------------------------------------------------------\n\t";
+        if (is_array($str)) {
+            $str = var_export($str, true);
+        }
+        file_put_contents('./log.php', $time . $str, FILE_APPEND);
     }
 
     public function getRequestTarget()
