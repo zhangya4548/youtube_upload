@@ -1,2 +1,4 @@
-# youtube_upload
-上传视频到youtube
+api-samples
+===========
+
+Code samples for YouTube APIs, including the YouTube Data API, YouTube Analytics API, and YouTube Live Streaming API. The repo contains language-specific directories that contain the samples.
